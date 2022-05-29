@@ -22,7 +22,7 @@ const Products = ({ sort, filters, cat }) => {
             ? `http://localhost:5000/api/products/?category=${cat}`
             : `http://localhost:5000/api/products`
         );
-        console.log(res.data);
+        // console.log(res.data);
 
         setProducts(res.data);
       } catch (err) {

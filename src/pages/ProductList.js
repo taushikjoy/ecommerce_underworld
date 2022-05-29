@@ -45,7 +45,7 @@ const ProductList = () => {
       [e.target.name]: value,
     });
   };
-  // console.log(filter);
+  console.log(filters);
   // console.log(sort);
 
   return (
@@ -58,12 +58,13 @@ const ProductList = () => {
           <span className='filtertext'>Filter Products:</span>
           <Select name='color' onChange={clickHandler}>
             <Option>Color</Option>
-            <Option>White</Option>
-            <Option>Black</Option>
-            <Option>Red</Option>
-            <Option>Blue</Option>
-            <Option>Yellow</Option>
-            <Option>Green</Option>
+            <Option>WHITE</Option>
+            <Option>BLACK</Option>
+            <Option>RED</Option>
+            <Option>BLUE</Option>
+            <Option>YELLOW</Option>
+            <Option>GREEN</Option>
+            <Option>GREY</Option>
           </Select>
           <Select name='size' onChange={clickHandler}>
             <Option>Size</Option>
