@@ -1,8 +1,88 @@
 import { Add, Remove } from "@material-ui/icons";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+
+const Cart = () => {
+  const cart = useSelector((state) => state.cart);
+  return (
+    <Container>
+      <Announcement />
+      <div className='wrapper'>
+        <h1 className='title'>YOUR BAG</h1>
+        <div className='top'>
+          <button className='topbutton'>CONTINUE SHOPPING</button>
+          <div>
+            <span className='toptext'>Shopping Bag(2)</span>
+            <span className='toptext'>Your Wishlist (0)</span>
+          </div>
+          <button className='topbutton' type='filled'>
+            CHECKOUT NOW
+          </button>
+        </div>
+        <div className='bottom'>
+          <div className='info'>
+            {/* maping through products */}
+            {cart.products.map((product) => (
+              <div className='product'>
+                <div className='productdetail'>
+                  <Image src={product.img} />
+                  <div className='details'>
+                    <span className='productname'>
+                      <b>Product:</b> {product.title}
+                    </span>
+                    <span className='productid'>
+                      <b>ID:</b> {product._id}
+                    </span>
+
+                    <ProductColor color='black' />
+                    <span className='productsize'>
+                      <b>Size:</b> {product.size}
+                    </span>
+                  </div>
+                </div>
+                <div className='pricedetails'>
+                  <div className='productamountcontainer'>
+                    <Add />
+                    <ProductAmount>{product.quantity}</ProductAmount>
+                    <Remove />
+                  </div>
+                  <ProductPrice>$ {product.price*product.quantity}</ProductPrice>
+                </div>
+                <Hr />
+              </div>
+            ))}
+          </div>
+          <Summary>
+            <SummaryTitle>ORDER SUMMARY</SummaryTitle>
+            <SummaryItem>
+              <span>Subtotal</span>
+              <span>$ 80</span>
+            </SummaryItem>
+            <SummaryItem>
+              <span>Estimated Shipping</span>
+              <span>$ 5.90</span>
+            </SummaryItem>
+            <SummaryItem>
+              <span>Shipping Discount</span>
+              <span>$ -5.90</span>
+            </SummaryItem>
+            <SummaryItem type='total'>
+              <span>Total</span>
+              <span>$ {cart.total}</span>
+            </SummaryItem>
+            <Button>CHECKOUT NOW</Button>
+          </Summary>
+        </div>
+      </div>
+      <Footer />
+    </Container>
+  );
+};
+
+export default Cart;
 
 const Container = styled.div`
   .wrapper {
@@ -87,7 +167,6 @@ const ProductColor = styled.div`
   background-color: ${(props) => props.color};
 `;
 
-
 const ProductAmount = styled.div`
   font-size: 24px;
   margin: 5px;
@@ -135,104 +214,3 @@ const Button = styled.button`
   color: white;
   font-weight: 600;
 `;
-
-const Cart = () => {
-  return (
-    <Container>
-      
-      <Announcement />
-      <div className='wrapper'>
-        <h1 className='title'>YOUR BAG</h1>
-        <div className='top'>
-          <button className='topbutton'>CONTINUE SHOPPING</button>
-          <div>
-            <span className='toptext'>Shopping Bag(2)</span>
-            <span className='toptext'>Your Wishlist (0)</span>
-          </div>
-          <button className='topbutton' type='filled'>
-            CHECKOUT NOW
-          </button>
-        </div>
-        <div className='bottom'>
-          <div className='info'>
-            <div className='product'>
-              <div className='productdetail'>
-                <Image src='https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1614188818-TD1MTHU_SHOE_ANGLE_GLOBAL_MENS_TREE_DASHERS_THUNDER_b01b1013-cd8d-48e7-bed9-52db26515dc4.png?crop=1xw:1.00xh;center,top&resize=480%3A%2A' />
-                <div className='details'>
-                  <span className='productname'>
-                    <b>Product:</b> JESSIE THUNDER SHOES
-                  </span>
-                  <span className='productid'>
-                    <b>ID:</b> 93813718293
-                  </span>
-
-                  <ProductColor color='black' />
-                  <span className='productsize'>
-                    <b>Size:</b> 37.5
-                  </span>
-                </div>
-              </div>
-              <div className='pricedetails'>
-                <div className='productamountcontainer'>
-                  <Add />
-                  <ProductAmount>2</ProductAmount>
-                  <Remove />
-                </div>
-                <ProductPrice>$ 30</ProductPrice>
-              </div>
-            </div>
-            <Hr />
-            <div className='product'>
-              <div className='productdetail'>
-                <Image src='https://i.pinimg.com/originals/2d/af/f8/2daff8e0823e51dd752704a47d5b795c.png' />
-                <div className='details'>
-                  <span className='productname'>
-                    <b>Product:</b> HAKURA T-SHIRT
-                  </span>
-                  <span className='productid'>
-                    <b>ID:</b> 93813718293
-                  </span>
-                  <ProductColor color='gray' />
-                  <span className='productsize'>
-                    <b>Size:</b> M
-                  </span>
-                </div>
-              </div>
-              <div className='pricedetails'>
-                <div className='productamountcontainer'>
-                  <Add />
-                  <ProductAmount>1</ProductAmount>
-                  <Remove />
-                </div>
-                <ProductPrice>$ 20</ProductPrice>
-              </div>
-            </div>
-          </div>
-          <Summary>
-            <SummaryTitle>ORDER SUMMARY</SummaryTitle>
-            <SummaryItem>
-              <span>Subtotal</span>
-              <span>$ 80</span>
-            </SummaryItem>
-            <SummaryItem>
-              <span>Estimated Shipping</span>
-              <span>$ 5.90</span>
-            </SummaryItem>
-            <SummaryItem>
-              <span>Shipping Discount</span>
-              <span>$ -5.90</span>
-            </SummaryItem>
-            <SummaryItem type='total'>
-              <span>Total</span>
-              <span>$ 80</span>
-            </SummaryItem>
-            <Button>CHECKOUT NOW</Button>
-          </Summary>
-        </div>
-      </div>
-      <Footer />
-    </Container>
-  );
-};
-
-export default Cart;

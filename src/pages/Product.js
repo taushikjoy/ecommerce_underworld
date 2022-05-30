@@ -41,7 +41,9 @@ const Product = () => {
   };
 
   const handleClick = () => {
-    dispatch(addProduct({ ...product, color, size, quantity }));
+    dispatch(
+      addProduct({ ...product, quantity , size , color   })
+    );
     //update cart
   };
   return (
