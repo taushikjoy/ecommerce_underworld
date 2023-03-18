@@ -5,10 +5,13 @@ import Product from "./pages/Product";
 import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import { useSelector } from "react-redux";
 function App() {
-  const user = false;
+  //const user = false;
+   const user = useSelector(state => state.user.currentUser);
   return (
     <div className='App'>
+      {/* testing */}
       <Routes>
         <Route exact path='/' element={<Home />} />
         <Route exact path='/products/:category' element={<ProductList />} />

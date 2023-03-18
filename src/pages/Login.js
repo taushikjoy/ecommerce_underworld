@@ -1,4 +1,45 @@
+import { useState } from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { login } from "../redux/apiCalls";
+
+const Login = () => {
+  const [username, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+
+  const dispatch = useDispatch();
+
+  const handleLoginClick = (e) => {
+    e.preventDefault();
+    login(dispatch, { username, password });
+  };
+  return (
+    <Container>
+      <div className='wrapper'>
+        <h1 className='title'>SIGN IN</h1>
+        <Form>
+          <Input
+            placeholder='username'
+            onChange={(e) => setUserName(e.target.value)}
+          />
+          <Input
+            placeholder='password'
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <Button onClick={handleLoginClick}>LOGIN</Button>
+          {/* <a className='link' href='#'>
+            DO NOT YOU REMEMBER THE PASSWORD?
+          </a>
+          <a className='link' href='#'>
+            CREATE A NEW ACCOUNT
+          </a> */}
+        </Form>
+      </div>
+    </Container>
+  );
+};
+
+export default Login;
 
 const Container = styled.div`
   width: 100vw;
@@ -53,22 +94,3 @@ const Button = styled.button`
   cursor: pointer;
   margin-bottom: 10px;
 `;
-
-const Login = () => {
-  return (
-    <Container>
-      <div className='wrapper'>
-        <h1 className='title'>SIGN IN</h1>
-        <Form>
-          <Input placeholder='username' />
-          <Input placeholder='password' />
-          <Button>LOGIN</Button>
-          <a className='link'>DO NOT YOU REMEMBER THE PASSWORD?</a>
-          <a className='link'>CREATE A NEW ACCOUNT</a>
-        </Form>
-      </div>
-    </Container>
-  );
-};
-
-export default Login;

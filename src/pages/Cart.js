@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
+// import Navbar from "../components/Navbar";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
@@ -26,7 +26,7 @@ const Cart = () => {
           <div className='info'>
             {/* maping through products */}
             {cart.products.map((product) => (
-              <div className='product'>
+              <div className='product' key={product._id}>
                 <div className='productdetail'>
                   <Image src={product.img} />
                   <div className='details'>
@@ -37,7 +37,7 @@ const Cart = () => {
                       <b>ID:</b> {product._id}
                     </span>
 
-                    <ProductColor color='black' />
+                    <ProductColor color={product.color}  />
                     <span className='productsize'>
                       <b>Size:</b> {product.size}
                     </span>
@@ -49,7 +49,9 @@ const Cart = () => {
                     <ProductAmount>{product.quantity}</ProductAmount>
                     <Remove />
                   </div>
-                  <ProductPrice>$ {product.price*product.quantity}</ProductPrice>
+                  <ProductPrice>
+                    $ {product.price * product.quantity}
+                  </ProductPrice>
                 </div>
                 <Hr />
               </div>

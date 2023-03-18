@@ -7,9 +7,9 @@ import Categories from "../components/Categories";
 import Products from "../components/Products";
 import Newsletter from "../components/NewsLetter";
 import Footer from "../components/Footer";
-import Login from "./Login";
-import Register from "./Register";
-import Cart from "./Cart";
+// import Login from "./Login";
+// import Register from "./Register";
+// import Cart from "./Cart";
 
 function Home() {
   return (
